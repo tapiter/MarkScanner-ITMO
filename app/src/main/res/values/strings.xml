@@ -2,4 +2,12 @@
     <string name="app_name">MarkScanner-ITMO</string>
     <string name="app_description">MarkScanner - неофициальное приложение для проверки кодов маркировки</string>
     <string name="scan">Сканировать</string>
+    <string name="check_input_code">Проверить введённый код</string>
+    <string name="input_code_hint">КИ/КМ</string>
+    <string name="or">или</string>
+    <string name="result">Результат сканирования</string>
+    <string name="making_request">Делаем запрос к ЧЗ…</string>
+    <string name="please_wait">Пожалуйста, подождите.</string>
+    <string name="full_result">Ответ ЧЗ (JSON)</string>
+    <string name="update_result">Обновить статус</string>
 </resources>

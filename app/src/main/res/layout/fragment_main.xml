@@ -17,8 +17,32 @@
         android:layout_marginBottom="16dp"
         android:text="@string/app_description" />
 
+    <EditText
+        android:id="@+id/input_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/input_code_hint"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
     <Button
-        android:id="@+id/btnScan"
+        android:id="@+id/button_check"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/check_input_code"
+        android:textColor="@color/text_secondary" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/or"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/button_scan"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

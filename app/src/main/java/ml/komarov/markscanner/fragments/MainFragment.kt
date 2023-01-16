@@ -3,12 +3,10 @@ package ml.komarov.markscanner.fragments
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import android.view.*
 import androidx.camera.core.ExperimentalGetImage
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import ml.komarov.markscanner.BarcodeActivity
 import ml.komarov.markscanner.R
 import ml.komarov.markscanner.databinding.FragmentMainBinding
@@ -51,11 +49,15 @@ class MainFragment : Fragment() {
     private fun setup() {
         setTitle()
 
-        binding.btnScan.setOnClickListener {
+        binding.buttonScan.setOnClickListener {
             startActivityForResult(
                 Intent(activity, BarcodeActivity::class.java),
                 REQUEST_CODE
             )
+        }
+
+        binding.buttonCheck.setOnClickListener {
+            openCodeData(binding.inputCode.text.toString())
         }
     }
 
@@ -64,7 +66,21 @@ class MainFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             val code = data!!.getStringExtra("DATA")!!
-            Toast.makeText(requireContext(), code, Toast.LENGTH_SHORT).show()
+            openCodeData(code)
         }
+    }
+
+    private fun openCodeData(code: String) {
+        val args = Bundle()
+        args.putString("code", code)
+
+        val newResultFragment = ResultFragment.newInstance()
+        newResultFragment.arguments = args
+
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, newResultFragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .addToBackStack(ResultFragment::class.qualifiedName)
+            .commit()
     }
 }

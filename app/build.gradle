@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id "org.jetbrains.kotlin.kapt"
 }
 
 android {
@@ -61,6 +62,21 @@ dependencies {
 
     // Permission Library
     implementation "com.github.florent37:runtime-permission-kotlin:1.1.2"
+
+    // Room SQLite DB
+    def room_version = "2.5.0"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // OkHttp Client
+    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+
+    // JSON library
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    // JSON viewer
+    implementation 'com.yuyh.json:jsonviewer:1.0.6'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
