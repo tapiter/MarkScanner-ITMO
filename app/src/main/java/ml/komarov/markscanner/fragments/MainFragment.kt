@@ -4,7 +4,6 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import androidx.camera.core.ExperimentalGetImage
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import ml.komarov.markscanner.BarcodeActivity
@@ -28,7 +27,29 @@ class MainFragment : Fragment() {
         }
     }
 
-    @ExperimentalGetImage
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menuScanHistory -> requireFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainer, HistoryFragment.newInstance())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(HistoryFragment::class.qualifiedName)
+                .commit()
+
+            R.id.menuExit -> requireActivity().finishAndRemoveTask()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

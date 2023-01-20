@@ -10,4 +10,6 @@
     <string name="please_wait">Пожалуйста, подождите.</string>
     <string name="full_result">Ответ ЧЗ (JSON)</string>
     <string name="update_result">Обновить статус</string>
+    <string name="scan_history">История сканирований</string>
+    <string name="exit">Выход</string>
 </resources>

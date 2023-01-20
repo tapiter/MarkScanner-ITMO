@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import ml.komarov.markscanner.App
 import ml.komarov.markscanner.R
 import ml.komarov.markscanner.databinding.FragmentResultBinding
@@ -78,6 +79,47 @@ class ResultFragment : Fragment() {
         } else if (id > 0) {
             fillData(id)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menuRoot = menu
+        inflater.inflate(R.menu.result_menu, menu)
+
+        updateFullLogVisibility()
+
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menuFullResult -> {
+                val db: AppDatabase = App.instance!!.getDatabase()!!
+                val historyDao = db.historyDao()!!
+
+                val codeDataFromHistory = historyDao.getHistory(requireArguments().getLong("id"))?.data
+
+                if (codeDataFromHistory != null) {
+                    val args = Bundle()
+                    args.putString("json", codeDataFromHistory)
+
+                    val newFullLogFragment = FullLogFragment.newInstance()
+                    newFullLogFragment.arguments = args
+
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, newFullLogFragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(FullLogFragment::class.qualifiedName)
+                        .commit()
+                } else {
+                    Toast.makeText(context, "Упс... Что-то пошло не так...", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+            R.id.menuRefreshResult -> {
+                getResult(requireArguments().getString("code")!!)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun createWaitDialog(): AlertDialog {

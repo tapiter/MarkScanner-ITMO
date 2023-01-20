@@ -76,7 +76,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
 
     // JSON viewer
-    implementation 'com.yuyh.json:jsonviewer:1.0.6'
+    implementation 'com.github.pvarry:android-json-viewer:v1.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
