@@ -45,7 +45,11 @@ class MainFragment : Fragment() {
                 .addToBackStack(HistoryFragment::class.qualifiedName)
                 .commit()
 
-            R.id.menuExit -> requireActivity().finishAndRemoveTask()
+            R.id.menuSettings -> requireFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainer, SettingsFragment.newInstance())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(SettingsFragment::class.qualifiedName)
+                .commit()
         }
         return super.onOptionsItemSelected(item)
     }

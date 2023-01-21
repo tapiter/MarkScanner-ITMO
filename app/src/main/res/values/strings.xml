@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_settings">APP_SETTINGS</string>
     <string name="app_name">MarkScanner-ITMO</string>
     <string name="app_description">MarkScanner - неофициальное приложение для проверки кодов маркировки</string>
     <string name="scan">Сканировать</string>
@@ -12,4 +13,13 @@
     <string name="update_result">Обновить статус</string>
     <string name="scan_history">История сканирований</string>
     <string name="exit">Выход</string>
+    <string name="settings">Настройки</string>
+    <string name="mobile_api">Mobile API (без авторизации)</string>
+    <string name="true_api">True API (по токену)</string>
+    <string name="token_url">URL токена</string>
+    <string name="auth_needed">Необходима авторизация</string>
+    <string name="username">Имя пользователя</string>
+    <string name="password">Пароль</string>
+    <string name="save_settings">Сохранить настройки</string>
+    <string name="update">Обновить</string>
 </resources>
